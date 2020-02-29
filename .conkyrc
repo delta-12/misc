@@ -1,0 +1,126 @@
+# Conky Google Now style #
+
+# Conky settings #
+background yes
+update_interval 1
+double_buffer yes
+no_buffers yes
+
+# Window specifications #
+own_window yes
+own_window_type normal
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_title
+# own_window_colour 2D2D2D
+
+# Additional formatting
+own_window_argb_value 60
+own_window_class 'conky-semi'
+own_window_argb_visual true
+own_window_type 'dock'
+
+minimum_size 250
+
+# Alignment #
+alignment middle_right
+gap_x 12
+gap_y 56
+
+border_inner_margin 15
+border_outer_margin 0
+
+# Graphics settings #
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+
+# Text settings #
+use_xft yes
+xftalpha 0
+xftfont Open Sans Light:size=10
+
+override_utf8_locale yes
+
+imlib_cache_size 0
+
+# Color scheme #
+default_color DCDCDC
+
+color1 0099CC
+color2 9933CC
+color3 669900
+color4 FF8800
+color5 CC0000
+color6 AAAAAA
+color7 484848
+
+TEXT
+S Y S T E M   I N F O
+${hr}
+Host:$alignr$nodename
+Uptime:$alignr$uptime
+CPU usage:$alignr${cpu cpu0}%
+${cpubar}
+RAM:$alignr$mem/$memmax
+Frequency (in MHz):$alignr$color $freq
+Frequency (in GHz):$alignr$color $freq_g
+${membar}
+Swap usage:$alignr$swap/$swapmax
+${swapbar}
+Disk usage:$alignr${fs_used /home}/${fs_size /home}
+${color1}Read:${color} ${color3}${diskio_read}${color}${alignr}${color1}Write:${color} ${color3}${diskio_write}${color}
+${diskiograph_read 50,120 FF8800 FF8800}${alignr}${diskiograph_write 50,120 FF8800 FF8800}
+
+P R O C E S S E S
+${hr}
+Processes:$alignr$color$processes
+
+Name$alignr CPU        RAM        I/O%
+${top_io name 1}$alignr${top_io cpu 1}     ${top_io mem 1}     ${top_io io_perc 1}
+${top_io name 2}$alignr${top_io cpu 2}     ${top_io mem 2}     ${top_io io_perc 2}
+${top_io name 3}$alignr${top_io cpu 3}     ${top_io mem 3}     ${top_io io_perc 3}
+${top_io name 4}$alignr${top_io cpu 4}     ${top_io mem 4}     ${top_io io_perc 4}
+${top_io name 5}$alignr${top_io cpu 5}     ${top_io mem 5}     ${top_io io_perc 5}
+
+N E T W O R K
+${hr}
+${if_existing /proc/net/route enp5s0}Interface:$alignr enp5s0
+${color1}Up:${color} ${color3}${upspeed enp5s0}${color}${alignr}${color1}Down:${color} ${color3}${downspeed enp5s0}${color}
+${upspeedgraph enp5s0 50,120 FF8800 FF8800}${alignr}${downspeedgraph enp5s0 50,120 FF8800 FF8800}
+${color1}Sent:${color} ${color2}${totalup enp5s0}${color}${alignr}${color1}Received:${color} ${color2}${totaldown enp5s0}${color}
+${if_existing /proc/net/route enp6s0}Interface:$alignr enp6s0
+${color1}Up:${color} ${color3}${upspeed enp6s0}${color}${alignr}${color1}Down:${color} ${color3}${downspeed enp6s0}${color}
+${upspeedgraph enp6s0 50,120 FF8800 FF8800}${alignr}${downspeedgraph enp6s0 50,120 FF8800 FF8800}
+${color1}Sent:${color} ${color2}${totalup enp6s0}${color}${alignr}${color1}Received:${color} ${color2}${totaldown enp6s0}${color}
+${else}${else}
+Network disconnected
+${color6}Connect to a network to see statistics${color}
+${voffset 50}
+${endif}${endif}
+
+# S H O R T C U T    K E Y S
+# ${hr}
+# Alt+F2$alignr Run Dialog
+# Alt+F3$alignr Alt Menu
+# Super+Space$alignr Main Menu
+# Super+Tab$alignr Client Menu
+# Super+t$alignr Terminal
+# Super+f$alignr File Manager
+# Super+e$alignr Editor
+# Super+m$alignr Thunderbird
+# Super+s$alignr Skype
+# Super+k$alignr KeePassX
+# Super+w$alignr Web Browser
+# Super+h$alignr Task Manager
+# Super+l$alignr Lock Screen
+# Super+v$alignr Volume Control
+# Super+x$alignr Logout
+# PrtSc$alignr Screenshot
+
+${voffset 9}
+D A T E  &  T I M E
+${hr}
+${color}${font Open Sans Light:size=20}${time %A}${font}
+${font Open Sans Light:size=20}${time %B} ${time %e}${font}
+${font Open Sans Light:size=50}${time %H:%M %p}${font}
